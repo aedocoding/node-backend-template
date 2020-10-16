@@ -3,7 +3,9 @@
 - User registration, user login, and authentication with JSON Web Tokens are already implemented.
 # Next Steps
 - Ideally, a developer should be able to use Knex migrations + seeds to quickly create the tables for whatever kind of data they're dealing with. You can refer to this [guide on Knex migrations + seeds if you need a quick reminder of how they work.](https://gist.github.com/NigelEarle/70db130cc040cc2868555b29a0278261) The [Knex documentation is also very helpful.](http://knexjs.org/) 
-- Any developer using this should focus on creating more routers and endpoints for their API and aim for full CRUD (Create/Read/Update/Delete) functionality for their data.
+- Any developer using this should focus on creating more routers and endpoints for their API and aim for full CRUD (Create/Read/Update/Delete) functionality for their data. 
+- Be sure to use the authentication middleware so that only registered users who have logged in can interact with the API you build.
+- Be sure to set your environment variables when you are ready to deploy your API.
 ## List of modules and libraries being used:
 - __Knex__ - SQL Query Builder for JavaScript
 - __Knex-cleaner__ - Helper library to clean a PostgreSQL, MySQL or SQLite3 database tables using Knex. Great for integration tests.
