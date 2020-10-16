@@ -23,7 +23,7 @@
 { message: "Server is running" }
 ```
 
--__post("/register")__: will allow you to register a new user contingent on the username and email being unique. 
+- __post("/register")__: will allow you to register a new user contingent on the username and email being unique. 
 ```JavaScript
 ## What the body of the request should look like when registering a new user
 {
@@ -41,7 +41,7 @@
 }
 ```
 
--__post("/login")__: will allow you to login with a user and become authenticated if your credentials are correct
+- __post("/login")__: will allow you to login with a user and become authenticated if your credentials are correct
 ```JavaScript
 ## What the body of the request should look like when logging in
 {
