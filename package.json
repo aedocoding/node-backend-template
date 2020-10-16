@@ -10,18 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Travel-Far-And-Wide/back-end.git"
+    "url": "git+https://github.com/aedocoding/node-backend-template"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Travel-Far-And-Wide/back-end/issues"
+    "url": "https://github.com/aedocoding/node-backend-template/issues"
   },
-  "homepage": "https://github.com/Travel-Far-And-Wide/back-end#readme",
+  "homepage": "https://github.com/aedocoding/node-backend-template#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.1.1",

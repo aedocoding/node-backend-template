@@ -15,6 +15,7 @@
 - __Sqlite3__ - relational database management system (RDBMS) that will let us interact with our .db3 files
 - __Nodemon__ - is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected
 - __Dotenv__ - is a zero-dependency module that loads environment variables from a . env file into process. env . Storing configuration in the environment separate from code is based on the Twelve-Factor App methodology
+- __cross-env__ - run scripts that set and use environment variables across different platforms/OSes
  - __bcryptjs__ - used for password hashing/salting/accumulative hashing rounds
  - __Jsonwebtoken__ - add authentication when logging in to access protected routes
 
