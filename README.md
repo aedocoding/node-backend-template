@@ -1,7 +1,12 @@
-# back-end
+# Backend Template
+- This project was made in order to allow developers to quickly boilerplate a backend for whatever project they might be working on, it has only the essentials in getting a working API up and running.
+- User registration, user login, and authentication with JSON Web Tokens are already implemented.
+# Next Steps
+- Ideally, a developer should be able to use Knex migrations + seeds to quickly create the tables for whatever kind of data they're dealing with. You can refer to [guide on Knex migrations + seeds if you need a quick reminder of how they work.](https://gist.github.com/NigelEarle/70db130cc040cc2868555b29a0278261)
+- Any developer using this should focus on creating more routers and endpoints for their API and aim for full CRUD (Create/Read/Update/Delete) functionality for their data.
 ## List of modules and libraries being used:
 - __Knex__ - SQL Query Builder for JavaScript
-- __Knex-cleane__r - Helper library to clean a PostgreSQL, MySQL or SQLite3 database tables using Knex. Great for integration tests.
+- __Knex-cleaner__ - Helper library to clean a PostgreSQL, MySQL or SQLite3 database tables using Knex. Great for integration tests.
 - __Helmet__ - helps you secure your Express apps by setting various HTTP headers
 - __Express__ - minimal and flexible Node.js web application framework that provides a robust set of features for building web and mobile applications, as well as APIs. Can be thought of in the same vein as “React” but for the backend that way we use it. Will also allow our server to be able to read JSON.
 - __CORS__ - node.js package for providing a Connect/Express middleware that can be used to enable CORS (Cross Origin Resource sharing) with various options
@@ -12,3 +17,40 @@
  - __Jsonwebtoken__ - add authentication when logging in to access protected routes
 
 ## Endpoints for API
+- __get("/")__: will return a message in JSON to you to let you know server is up
+```JavaScri[pt
+## What the response from the server should look like
+{ message: "Server is running" }
+```
+
+-__post("/register")__: will allow you to register a new user contingent on the username and email being unique. 
+```JavaScript
+## What the body of the request should look like when registering a new user
+{
+    "username": "testing",
+    "password": "testing",
+    "email": "testing@testing.com"
+}
+
+## What the body of the response should look like when registering a new user
+{
+    "id": 1,
+    "username": "testing",
+    "password": "$2a$10$loSggsJU0xbdgk65ragc3ebqqGRbQQc8qsCsQpEtuctLV4sljN3hq",
+    "email": "testing@testing.com"
+}
+```
+
+-__post("/login")__: will allow you to login with a user and become authenticated if your credentials are correct
+```JavaScript
+## What the body of the request should look like when logging in
+{
+    "username": "testing",
+    "password": "testing",
+}
+## What the body of the response should look like when logging in
+{
+    "message": "Welcome {username}!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoyLCJ1c2VybmFtZSI6InRlc3RpbmciLCJsYXQiOjE2MDI4Mzg1OTYwODAsImlhdCI6MTYwMjgzODU5NiwiZXhwIjoxNjAyODQyMTk2fQ.wyzE1R0zYkR3zJkroWX1PdaRGuufhWlQtXUq9v17ZQ8"
+}
+```
