@@ -18,6 +18,7 @@
 - __cross-env__ - run scripts that set and use environment variables across different platforms/OSes
  - __bcryptjs__ - used for password hashing/salting/accumulative hashing rounds
  - __Jsonwebtoken__ - add authentication when logging in to access protected routes
+ - __pg__ - node-postgres is a collection of node.js modules for interfacing with your PostgreSQL database.
 
 ## Endpoints for API
 - __get("/")__: will return a message in JSON to you to let you know server is up
