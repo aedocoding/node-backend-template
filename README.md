@@ -57,3 +57,7 @@
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoyLCJ1c2VybmFtZSI6InRlc3RpbmciLCJsYXQiOjE2MDI4Mzg1OTYwODAsImlhdCI6MTYwMjgzODU5NiwiZXhwIjoxNjAyODQyMTk2fQ.wyzE1R0zYkR3zJkroWX1PdaRGuufhWlQtXUq9v17ZQ8"
 }
 ```
+# Future Updates
+- [ ] Add testing for endpoints present
+- [ ] Create documentation on adding in your data + endpoints
+- [ ] Add more documentation on how the project works for developers unfamiliar with tech stack
