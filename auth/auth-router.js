@@ -16,29 +16,35 @@ router.post("/register", (req, res) => {
   Users.findBy({ username: newUser.username })
     .first()
     .then((e) => {
-      e
-        ? res.status(400).json({
-            message: `Username of ${e.username} already exists, please register with a different username or login`,
-          })
-        : Users.findBy({ email: newUser.email })
-            .first()
-            .then((e) => {
-              e
-                ? res.status(400).json({
-                    message: `Email of ${e.email} already exists, please register with a different email or login`,
+      if (e) {
+        res.status(400).json({
+          message: `Username of ${e.username} already exists, please register with a different username or login`,
+        });
+      } else {
+        Users.findBy({ email: newUser.email })
+          .first()
+          .then((e) => {
+            if (e) {
+              res.status(400).json({
+                message: `Email of ${e.email} already exists, please register with a different email or login`,
+              });
+            } else {
+              if (isValid(newUser)) {
+                Users.add(newUser)
+                  .then((saved) => {
+                    res.status(201).json(saved);
                   })
-                : isValid(newUser)
-                ? Users.add(newUser)
-                    .then((saved) => {
-                      res.status(201).json(newUser);
-                    })
-                    .catch((error) => {
-                      res.status(500).json(error.message);
-                    })
-                : res
-                    .status(400)
-                    .json({ message: "Username or password missing" });
-            });
+                  .catch((error) => {
+                    res.status(500).json(error.message);
+                  });
+              } else {
+                res
+                  .status(400)
+                  .json({ message: "Username or password missing" });
+              }
+            }
+          });
+      }
     });
 });
 
@@ -50,10 +56,10 @@ router.post("/login", (req, res) => {
     .then((user) => {
       if (isValid(req.body)) {
         if (user && bcrypt.compareSync(password, user.password)) {
-          const token = generateToken(user); 
+          const token = generateToken(user);
           res.status(200).json({
             message: `Welcome ${user.username}!`,
-            token, 
+            token,
           });
         } else {
           res.status(401).json({ message: "Invalid Credentials" });
