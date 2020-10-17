@@ -32,7 +32,7 @@ router.post("/register", (req, res) => {
               if (isValid(newUser)) {
                 Users.add(newUser)
                   .then((saved) => {
-                    res.status(201).json(saved);
+                   return res.status(201).json(saved);
                   })
                   .catch((error) => {
                     res.status(500).json(error.message);
