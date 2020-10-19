@@ -45,7 +45,7 @@ router.post("/register", async (req, res, next) => {
   } catch (error) {
     next({ apiCode: 500, apiMessage: 'error saving new user', ...error });
   }
-});
+
   // if (isValid(newUser)) {
   //   Users.add(newUser)
   //     .then((saved) => {
