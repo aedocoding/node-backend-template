@@ -1,6 +1,7 @@
 # Backend Template
 - This project was made in order to allow developers to quickly boilerplate a backend for whatever project they might be working on, it has only the essentials in getting a working API up and running.
 - User registration, user login, and authentication with JSON Web Tokens are all already implemented.
+- Sample tests have been written for the existing endpoints using Jest and Supertest. Run the tests with ```JavaScript npm run test```
 # Next Steps
 - Ideally, a developer should be able to use Knex migrations + seeds to quickly create the tables for whatever kind of data they're dealing with. You can refer to this [guide on Knex migrations + seeds if you need a quick reminder of how they work.](https://gist.github.com/NigelEarle/70db130cc040cc2868555b29a0278261) The [Knex documentation is also very helpful.](http://knexjs.org/) 
 - Any developer using this should focus on creating more routers and endpoints for their API and aim for full _CRUD (Create/Read/Update/Delete)_ functionality for their data. 
