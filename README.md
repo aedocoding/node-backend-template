@@ -3,10 +3,10 @@
 - User registration, user login, and authentication with JSON Web Tokens are already implemented.
 # Next Steps
 - Ideally, a developer should be able to use Knex migrations + seeds to quickly create the tables for whatever kind of data they're dealing with. You can refer to this [guide on Knex migrations + seeds if you need a quick reminder of how they work.](https://gist.github.com/NigelEarle/70db130cc040cc2868555b29a0278261) The [Knex documentation is also very helpful.](http://knexjs.org/) 
-- Any developer using this should focus on creating more routers and endpoints for their API and aim for full CRUD (Create/Read/Update/Delete) functionality for their data. 
+- Any developer using this should focus on creating more routers and endpoints for their API and aim for full _CRUD (Create/Read/Update/Delete)_ functionality for their data. 
 - Be sure to use the authentication middleware so that only registered users who have logged in can interact with the API you build.
 - Be sure to set your environment variables when you are ready to deploy your API and change the development environment to production. Important environment variables to set include: DATABASE_URL (for your postgres connection) and DB_ENV (to set your deployment environment).
-- Finally, when you have deployed to whatever hosting site you want and your database is being stored via their URL, make sure to  [provision Heroku Postgres.](https://devcenter.heroku.com/articles/heroku-postgresql#heroku-postgres-ssl) and run the command ```JavaScript heroku pg:psql ``` to connect to the remote database.
+- Finally, when you have deployed to whatever hosting site you want and your database is being stored via their URL, make sure to  [provision Heroku Postgres.](https://devcenter.heroku.com/articles/heroku-postgresql#heroku-postgres-ssl) and run the command ```JavaScript heroku pg:psql ``` to connect to the remote database. You can then run bash via the terminal and Heroku CLI to run your migrations/seeds.
 ## List of modules and libraries being used:
 - __Knex__ - SQL Query Builder for JavaScript
 - __Knex-cleaner__ - Helper library to clean a PostgreSQL, MySQL or SQLite3 database tables using Knex. Great for integration tests.
@@ -23,7 +23,7 @@
 
 ## Endpoints for API
 - __get("/")__: will return a message in JSON to you to let you know server is up
-```JavaScri[pt
+```JavaScript
 ## What the response from the server should look like
 { message: "Server is running" }
 ```
