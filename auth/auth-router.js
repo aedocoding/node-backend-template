@@ -28,14 +28,24 @@ router.post("/register", async (req, res, next) => {
   user.password = hash;
   try {
     if (isValid(user)) {
-      await Users.add(user);
-      res.status(201).json(user);
+      const newUser = await Users.add(user);
+      res.status(201).json({
+        auth: {
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+        },
+      });
     } else {
-      res.status(400).json({message: 'Username, password, or email is missing'});
+      next({
+        apiCode: 400,
+        apiMessage: 'name, email or password missing',
+      });
     }
   } catch (error) {
-   res.status(500).json(error.message)
+    next({ apiCode: 500, apiMessage: 'error saving new user', ...error });
   }
+});
   // if (isValid(newUser)) {
   //   Users.add(newUser)
   //     .then((saved) => {
