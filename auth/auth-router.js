@@ -6,7 +6,6 @@ const Users = require("../users/user-model");
 const { isValid } = require("../users/user-service");
 
 router.post("/register", (req, res) => {
-  const user = req.body;
   const newUser = req.body;
   // const userExist = await Users.findBy({ username: user.username }).first();
   // if (userExist) {
@@ -26,7 +25,7 @@ router.post("/register", (req, res) => {
     ? parseInt(process.env.BCRYPT_ROUNDS)
     : 10;
   const hash = bcrypt.hashSync(user.password, rounds);
-  user.password = hash;
+  newUser.password = hash;
   // try {
   //   if (isValid(user)) {
   //     await Users.add(user);
@@ -37,15 +36,7 @@ router.post("/register", (req, res) => {
   // } catch (error) {
   //  res.status(500).json(error.message)
   // }
-  if (isValid(newUser)) {
-    Users.add(newUser)
-      .then((saved) => {
-        res.status(201).json(saved);
-      })
-      .catch((error) => {
-        res.status(500).json(error.message);
-      });
-  }
+
   Users.findBy({ username: newUser.username })
     .first()
     .then((e) => {
