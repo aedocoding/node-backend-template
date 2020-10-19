@@ -16,13 +16,13 @@
 - __Sqlite3__ - relational database management system (RDBMS) that will let us interact with our .db3 files.
 - __Dotenv__ - is a zero-dependency module that loads environment variables from a .env file into process.env . Storing configuration in the environment separate from code is based on the Twelve-Factor App methodology.
 - __cross-env__ - run scripts that set and use environment variables across different platforms/OSes.
- - __bcryptjs__ - used for password hashing/salting/accumulative hashing rounds.
- - __Jsonwebtoken__ - add authentication when logging in to access protected routes.
- - __pg__ - node-postgres is a collection of node.js modules for interfacing with your PostgreSQL database.
+- __bcryptjs__ - used for password hashing/salting/accumulative hashing rounds.
+- __Jsonwebtoken__ - add authentication when logging in to access protected routes.
+- __pg__ - node-postgres is a collection of node.js modules for interfacing with your PostgreSQL database.
  ### Development dependencies:
  - __Nodemon__ - is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
- -__jest__ - Jest is a JavaScript test runner, a  library for creating, running, and structuring tests.
- -__supertest__ - HTTP assertions library that uses __superagent__ to allow for easy API testing.
+ - __jest__ - Jest is a JavaScript test runner, a  library for creating, running, and structuring tests.
+ - __supertest__ - HTTP assertions library that uses __superagent__ to allow for easy API testing.
 
 ## Endpoints for API
 - __get("/")__: will return a message in JSON to you to let you know server is up
