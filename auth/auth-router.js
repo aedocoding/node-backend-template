@@ -7,7 +7,6 @@ const { isValid } = require("../users/user-service");
 
 router.post("/register", async (req, res, next) => {
   const user = req.body;
-
   const userExist = await Users.findBy({ username: user.username }).first();
   if (userExist) {
     res.status(400).json({
@@ -15,24 +14,22 @@ router.post("/register", async (req, res, next) => {
     });
     return;
   }
-
+  const emailExist = await Users.findBy({ email: user.email }).first();
+  if (emailExist) {
+    res.status(400).json({
+      message: `Email of ${user.email} already exists, please register with a different email or login`,
+    });
+    return;
+  }
   const rounds = process.env.BCRYPT_ROUNDS
     ? parseInt(process.env.BCRYPT_ROUNDS)
     : 10;
-
   const hash = bcrypt.hashSync(user.password, rounds);
   user.password = hash;
-
   try {
     if (isValid(user)) {
-      const newUser = await Users.add(user);
-      res.status(201).json({
-        auth: {
-          id: newUser.id,
-          name: newUser.name,
-          email: newUser.email,
-        },
-      });
+      await Users.add(user);
+      res.status(201).json(user);
     } else {
       next({
         apiCode: 400,
