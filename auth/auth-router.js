@@ -5,7 +5,7 @@ const { jwtSecret } = require("../config/secret");
 const Users = require("../users/user-model");
 const { isValid } = require("../users/user-service");
 
-router.post("/register", async (req, res) => {
+router.post("/register", async (req, res, next) => {
   const user = req.body;
 
   const userExist = await Users.findBy({ user: user.username }).first();
