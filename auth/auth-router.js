@@ -34,7 +34,7 @@ router.post("/register", async (req, res, next) => {
       res.status(400).json({message: 'Username, password, or email is missing'});
     }
   } catch (error) {
-   res.status(500).json({error})
+   res.status(500).json(error.message)
   }
   // if (isValid(newUser)) {
   //   Users.add(newUser)
