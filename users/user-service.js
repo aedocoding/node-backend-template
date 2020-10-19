@@ -7,7 +7,12 @@ function isValid(user) {
       ? user.username &&
           user.password &&
           user.email &&
+          typeof user.username === "string" &&
+          typeof user.password === "string" &&
+          typeof user.email === "string"
+      : user.username &&
+          user.password &&
+          typeof user.username === "string" &&
           typeof user.password === "string"
-      : user.username && user.password && typeof user.password === "string"
   );
 }

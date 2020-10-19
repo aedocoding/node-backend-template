@@ -7,35 +7,12 @@ const { isValid } = require("../users/user-service");
 
 router.post("/register", (req, res) => {
   const newUser = req.body;
-  // const userExist = await Users.findBy({ username: user.username }).first();
-  // if (userExist) {
-  //   res.status(400).json({
-  //     message: `Username of ${user.username} already exists, please register with a different username or login`,
-  //   });
-  //   return;
-  // }
-  // const emailExist = await Users.findBy({ email: user.email }).first();
-  // if (emailExist) {
-  //   res.status(400).json({
-  //     message: `Email of ${user.email} already exists, please register with a different email or login`,
-  //   });
-  //   return;
-  // }
+
   const rounds = process.env.BCRYPT_ROUNDS
     ? parseInt(process.env.BCRYPT_ROUNDS)
     : 10;
   const hash = bcrypt.hashSync(newUser.password, rounds);
   newUser.password = hash;
-  // try {
-  //   if (isValid(user)) {
-  //     await Users.add(user);
-  //     res.status(201).json(user);
-  //   } else {
-  //     res.status(400).json({message: 'Username, password, or email is missing'});
-  //   }
-  // } catch (error) {
-  //  res.status(500).json(error.message)
-  // }
 
   Users.findBy({ username: newUser.username })
     .first()
@@ -90,7 +67,7 @@ router.post("/login", (req, res) => {
           res.status(401).json({ message: "Invalid Credentials" });
         }
       } else {
-        res.status(400).json({ message: "Username or password incorrect" });
+        res.status(400).json({ message: "Username or password are missing or invalid types" });
       }
     })
     .catch((error) => {
