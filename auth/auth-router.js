@@ -31,13 +31,10 @@ router.post("/register", async (req, res, next) => {
       await Users.add(user);
       res.status(201).json(user);
     } else {
-      next({
-        apiCode: 400,
-        apiMessage: "Username, email, or password missing",
-      });
+      res.status(400).json({message: 'Username, password, or email is missing'});
     }
   } catch (error) {
-    next({ apiCode: 500, apiMessage: "Problem adding new user:", ...error });
+   res.status(500).json({error})
   }
   // if (isValid(newUser)) {
   //   Users.add(newUser)
