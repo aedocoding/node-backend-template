@@ -34,7 +34,7 @@ module.exports = {
   },
 
   production: {
-    client: "pg",
+    client: "pg-promise",
     connection: pgConnection,
     pool: {
       min: 2,

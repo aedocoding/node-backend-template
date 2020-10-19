@@ -56,7 +56,7 @@ router.post("/register", (req, res) => {
   //             } else {
   //               res
   //                 .status(400)
-  //                 .json({ message: "Username or password missing" });
+  //                 .json({ message: "Username, email, or password missing" });
   //             }
   //           }
   //         });

@@ -8,7 +8,7 @@ server.use(helmet());
 server.use(CORS());
 server.use(express.json());
 server.use("/auth", authRouter);
-const { Pool } = require("pg");
+const { Pool } = require("pg-promise");
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
