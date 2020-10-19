@@ -12,15 +12,22 @@ router.post("/register", (req, res) => {
     : 10;
   const hash = bcrypt.hashSync(newUser.password, hashRounds);
   newUser.password = hash;
-  if (isValid(newUser)) {
-    Users.add(newUser)
-      .then((saved) => {
-        res.status(201).json(saved);
-      })
-      .catch((error) => {
-        res.status(500).json(error.message);
-      });
-  }
+  Users.add(newUser)
+    .then((saved) => {
+      res.status(201).json(saved);
+    })
+    .catch((error) => {
+      res.status(500).json(error.message);
+    });
+  // if (isValid(newUser)) {
+  //   Users.add(newUser)
+  //     .then((saved) => {
+  //       res.status(201).json(saved);
+  //     })
+  //     .catch((error) => {
+  //       res.status(500).json(error.message);
+  //     });
+  // }
   // Users.findBy({ username: newUser.username })
   //   .first()
   //   .then((e) => {
