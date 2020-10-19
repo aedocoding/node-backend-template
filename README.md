@@ -1,6 +1,6 @@
 # Backend Template
 - This project was made in order to allow developers to quickly boilerplate a backend for whatever project they might be working on, it has only the essentials in getting a working API up and running.
-- User registration, user login, and authentication with JSON Web Tokens are already implemented.
+- User registration, user login, and authentication with JSON Web Tokens are all already implemented.
 # Next Steps
 - Ideally, a developer should be able to use Knex migrations + seeds to quickly create the tables for whatever kind of data they're dealing with. You can refer to this [guide on Knex migrations + seeds if you need a quick reminder of how they work.](https://gist.github.com/NigelEarle/70db130cc040cc2868555b29a0278261) The [Knex documentation is also very helpful.](http://knexjs.org/) 
 - Any developer using this should focus on creating more routers and endpoints for their API and aim for full _CRUD (Create/Read/Update/Delete)_ functionality for their data. 
@@ -28,7 +28,7 @@
 { message: "Server is running" }
 ```
 
-- __post("/auth/register")__: will allow you to register a new user contingent on the username and email being unique. 
+- __post("/auth/register")__: will allow you to register a new user contingent on the username and email being unique, and the 3 required fields (username, password, email) being the correct data type. 
 ```JavaScript
 ## What the body of the request should look like when registering a new user
 {
@@ -46,7 +46,7 @@
 }
 ```
 
-- __post("/auth/login")__: will allow you to login with a user and become authenticated if your credentials are correct
+- __post("/auth/login")__: will allow you to login with a user and become authenticated if your credentials are correct as well the 2 required fields (username, password) being the correct data type. 
 ```JavaScript
 ## What the body of the request should look like when logging in
 {
