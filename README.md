@@ -65,5 +65,5 @@
 ```
 # Future Updates
 - [ X ] Add testing for endpoints present
-- [ X ] Create documentation on adding in your data + endpoints
-- [ X ] Add more documentation on how the project works for developers unfamiliar with tech stack
+- [  ] Create documentation on adding in your data + endpoints
+- [  ] Add more documentation on how the project works for developers unfamiliar with tech stack
