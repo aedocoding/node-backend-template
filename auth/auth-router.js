@@ -8,7 +8,7 @@ const { isValid } = require("../users/user-service");
 router.post("/register", async (req, res, next) => {
   const user = req.body;
 
-  const userExist = await Users.findBy({ user: user.username }).first();
+  const userExist = await Users.findBy({ username: user.username }).first();
   if (userExist) {
     res.status(400).json({
       message: `Username of ${user.username} already exists, please register with a different username or login`,
