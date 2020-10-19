@@ -12,40 +12,49 @@ router.post("/register", (req, res) => {
     : 10;
   const hash = bcrypt.hashSync(newUser.password, hashRounds);
   newUser.password = hash;
+  if (isValid(newUser)) {
+    Users.add(newUser)
+      .then((saved) => {
+        res.status(201).json(saved);
+      })
+      .catch((error) => {
+        res.status(500).json(error.message);
+      });
+  }
+  // Users.findBy({ username: newUser.username })
+  //   .first()
+  //   .then((e) => {
+  //     if (e) {
+  //       res.status(400).json({
+  //         message: `Username of ${e.username} already exists, please register with a different username or login`,
+  //       });
+  //     } else {
+  //       Users.findBy({ email: newUser.email })
 
-  Users.findBy({ username: newUser.username })
-    .first()
-    .then((e) => {
-      if (e) {
-        res.status(400).json({
-          message: `Username of ${e.username} already exists, please register with a different username or login`,
-        });
-      } else {
-        Users.findBy({ email: newUser.email })
-          .first()
-          .then((e) => {
-            if (e) {
-              res.status(400).json({
-                message: `Email of ${e.email} already exists, please register with a different email or login`,
-              });
-            } else {
-              if (isValid(newUser)) {
-                Users.add(newUser)
-                  .then((saved) => {
-                    res.status(201).json(saved);
-                  })
-                  .catch((error) => {
-                    res.status(500).json(error);
-                  });
-              } else {
-                res
-                  .status(400)
-                  .json({ message: "Username or password missing" });
-              }
-            }
-          });
-      }
-    });
+  //         .first()
+  //         .then(e => {
+  //           if (e) {
+  //             res.status(400).json({
+  //               message: `Email of ${e.email} already exists, please register with a different email or login`,
+  //             });
+  //           } else {
+  //             if (isValid(newUser)) {
+  //               Users.add(newUser)
+  //                 .then(saved => {
+  //                   res.status(201).json(saved);
+  //                 })
+  //                 .catch(error => {
+  //                   res.status(500).json(error.message);
+  //                 });
+  //             } else {
+  //               res
+  //                 .status(400)
+  //                 .json({ message: "Username or password missing" });
+  //             }
+  //           }
+  //         });
+  //     }
+  //   });
 });
 
 router.post("/login", (req, res) => {
