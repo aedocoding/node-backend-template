@@ -7,6 +7,7 @@ const { isValid } = require("../users/user-service");
 
 router.post("/register", (req, res) => {
   const user = req.body;
+  const newUser = req.body;
   // const userExist = await Users.findBy({ username: user.username }).first();
   // if (userExist) {
   //   res.status(400).json({
