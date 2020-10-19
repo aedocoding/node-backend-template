@@ -5,20 +5,45 @@ const { jwtSecret } = require("../config/secret");
 const Users = require("../users/user-model");
 const { isValid } = require("../users/user-service");
 
-router.post("/register", (req, res) => {
-  let newUser = req.body;
-  const hashRounds = process.env.BCRYPT_ROUNDS
+router.post("/register", async (req, res) => {
+  const user = req.body;
+
+  const userExist = await Users.findBy({ user: user.username }).first();
+  if (userExist) {
+    res
+      .status(400)
+      .json({
+        message: `Username of ${user.username} already exists, please register with a different username or login`,
+      });
+    return;
+  }
+
+  const rounds = process.env.BCRYPT_ROUNDS
     ? parseInt(process.env.BCRYPT_ROUNDS)
     : 10;
-  const hash = bcrypt.hashSync(newUser.password, hashRounds);
-  newUser.password = hash;
-  Users.add(newUser)
-    .then((saved) => {
-      res.status(201).json(saved);
-    })
-    .catch((error) => {
-      res.status(500).json(error.message);
-    });
+
+  const hash = bcryptjs.hashSync(user.password, rounds);
+  user.password = hash;
+
+  try {
+    if (isValid(user)) {
+      const newUser = await Users.add(user);
+      res.status(201).json({
+        auth: {
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+        },
+      });
+    } else {
+      next({
+        apiCode: 400,
+        apiMessage: "Username, email, or password missing",
+      });
+    }
+  } catch (error) {
+    next({ apiCode: 500, apiMessage: "Problem adding new:", ...error });
+  }
   // if (isValid(newUser)) {
   //   Users.add(newUser)
   //     .then((saved) => {

@@ -1,6 +1,5 @@
 // Update with your config settings.
 const pgConnection = process.env.DATABASE_URL;
-const pgpromise = require('pg-promise')({})
 module.exports = {
   development: {
     client: "sqlite3",
@@ -36,7 +35,7 @@ module.exports = {
 
   production: {
     client: "pg",
-    connection: pgpromise(pgConnection),
+    connection: pgConnection,
     pool: {
       min: 2,
       max: 10,
