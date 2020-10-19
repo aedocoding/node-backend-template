@@ -10,11 +10,9 @@ router.post("/register", async (req, res, next) => {
 
   const userExist = await Users.findBy({ user: user.username }).first();
   if (userExist) {
-    res
-      .status(400)
-      .json({
-        message: `Username of ${user.username} already exists, please register with a different username or login`,
-      });
+    res.status(400).json({
+      message: `Username of ${user.username} already exists, please register with a different username or login`,
+    });
     return;
   }
 
@@ -22,7 +20,7 @@ router.post("/register", async (req, res, next) => {
     ? parseInt(process.env.BCRYPT_ROUNDS)
     : 10;
 
-  const hash = bcryptjs.hashSync(user.password, rounds);
+  const hash = bcrypt.hashSync(user.password, rounds);
   user.password = hash;
 
   try {
@@ -42,7 +40,7 @@ router.post("/register", async (req, res, next) => {
       });
     }
   } catch (error) {
-    next({ apiCode: 500, apiMessage: "Problem adding new:", ...error });
+    next({ apiCode: 500, apiMessage: "Problem adding new user:", ...error });
   }
   // if (isValid(newUser)) {
   //   Users.add(newUser)
