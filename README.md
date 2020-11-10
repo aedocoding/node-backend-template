@@ -1,4 +1,4 @@
-# Backend Template
+# Back End Template
 - This project was made in order to allow developers to quickly boilerplate a backend for whatever project they might be working on, it has only the essentials in getting a working API up and running.
 - User registration, user login, and authentication with JSON Web Tokens are all already implemented.
 - Sample tests have been written for the existing endpoints using Jest and Supertest. Run the tests with ```npm run test```.
